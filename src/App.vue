@@ -1,21 +1,28 @@
 <template>
-  <Main />
+  <Main v-if="loggedIn" />
+  <LogIn v-else />
 </template>
 
 <script lang="ts">
 import Main from '@/views/Main.vue';
+import LogIn from '@/views/LogIn.vue';
+import store from './store';
+import { mapState } from 'vuex';
 
 export default {
   components: {
-    Main
-  }
+    Main,
+    LogIn
+  },
+  store,
+  computed: mapState(['loggedIn'])
 }
 </script>
 
 <style lang="scss">
 body {
   margin: 0;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(242, 242, 242);
 }
 
 #app {

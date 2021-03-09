@@ -1,6 +1,6 @@
 <template>
   <div>
-      <p>User Profile!</p>
+      <p>UserProfile!</p>
   </div>
 </template>
 

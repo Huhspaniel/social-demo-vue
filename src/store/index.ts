@@ -5,7 +5,16 @@ export default createStore({
     loggedIn: false,
     user: {}
   },
-  mutations: {},
+  mutations: {
+    LOG_IN(state, { user }) {
+      state.loggedIn = true;
+      state.user = user;
+    },
+    LOG_OUT(state) {
+      state.loggedIn = false;
+      state.user = {};
+    }
+  },
   actions: {},
   modules: {}
 });
