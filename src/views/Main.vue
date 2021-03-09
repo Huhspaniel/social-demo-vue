@@ -1,29 +1,46 @@
 <template>
-  <div class="nav">
+  <div class="header">
     <img class="vue-logo" alt="Vue Logo" src="../assets/logo.png" />
     <nav>
-      <router-link to="/" class="material-icons">home</router-link>
-      <router-link to="/me" class="material-icons">account_circle</router-link>
-      <div class="material-icons">add</div>
-      <div class="material-icons">settings</div>
+      <router-link to="/">
+        <i class="material-icons">home</i>
+      </router-link>
+      <router-link to="/me">
+        <i class="material-icons">account_circle</i>
+      </router-link>
+      <div>
+        <i class="material-icons">add</i>
+      </div>
+      <MenuBtn>
+        <i class="material-icons">settings</i>
+        <template v-slot:menu>
+          <div class="settings-menu">
+            <div><i class="material-icons">invert_colors</i>Color Theme</div>
+            <div @click="logOut"><i class="material-icons">logout</i>Sign Out</div>
+          </div>
+        </template>
+      </MenuBtn>
     </nav>
   </div>
-  <button v-on:click="logOut()">Log Out</button>
   <router-view />
 </template>
 
 <script lang="ts">
-import { logOut } from '../services/firebase.service';
+import { logOut } from "../services/firebase.service";
+import MenuBtn from "../components/MenuBtn.vue";
 
 export default {
-    methods: {
-        logOut
-    }
-}
+  methods: {
+    logOut,
+  },
+  components: {
+    MenuBtn,
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.nav {
+.header {
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -32,27 +49,60 @@ export default {
   box-shadow: 0 0 2px black;
 
   .vue-logo {
-    height: 48px;
+    height: 60px;
     margin: 5px;
   }
 
-  nav > * {
-    cursor: pointer;
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 3px;
-    font-size: 32px;
-
-    &:hover {
-      background-color: rgb(235, 235, 235);
+  nav {
+    display: flex;
+    .material-icons {
+      font-size: 36px;
+      color: inherit;
+      padding: inherit;
+      margin: inherit;
+      user-select: none;
     }
+    > * {
+      cursor: pointer;
+      font-weight: bold;
+      color: #2c3e50;
+      text-decoration: none;
+      border-radius: 20px;
+      padding: 6px;
+      margin: 3px;
+      transition: color .15s ease;
 
-    &.router-link-exact-active {
-      color: #13b96e;
-      // background-color: rgb(235, 235, 235);
+      &:hover {
+        background-color: rgb(235, 235, 235);
+      }
+
+      &.router-link-exact-active, &.menu-btn-active {
+        color: #13b96e;
+      }
+      &.menu-btn-active {
+        background-color: rgb(235, 235, 235);
+      }
+    }
+    .settings-menu {
+      padding: .7em;
+      cursor: auto;
+
+      div {
+        cursor: pointer;
+        padding: .7em;
+        display: flex;
+        align-items: center;
+
+        .material-icons {
+          font-size: 18px;
+          margin-right: .5em;
+          padding: 0;
+        }
+
+        &:hover {
+          background-color: rgba(white, .2);
+        }
+      }
     }
   }
 }
