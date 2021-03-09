@@ -1,9 +1,11 @@
 <template>
   <div @click="toggle()" :class="{ 'menu-btn': true, 'menu-btn-active': isOpen }">
     <slot />
-    <div v-if="isOpen" class="menu-wrapper">
-        <slot name="menu" />
-    </div>
+    <transition name="fade">
+        <div v-if="isOpen" class="menu-wrapper">
+            <slot name="menu" />
+        </div>
+    </transition>
   </div>
 </template>
 
@@ -35,5 +37,12 @@ export default {
     width: max-content;
     background-color: rgb(77, 77, 77);
     color: white;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .1s ease;
+}
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
 }
 </style>

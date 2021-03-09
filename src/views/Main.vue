@@ -15,8 +15,8 @@
         <i class="material-icons">settings</i>
         <template v-slot:menu>
           <div class="settings-menu">
-            <div>Color Theme<i class="material-icons">invert_colors</i></div>
-            <div @click="logOut">Log Out<i class="material-icons">logout</i></div>
+            <div><i class="material-icons">invert_colors</i>Color Theme</div>
+            <div @click="logOut"><i class="material-icons">logout</i>Sign Out</div>
           </div>
         </template>
       </MenuBtn>
@@ -49,17 +49,18 @@ export default {
   box-shadow: 0 0 2px black;
 
   .vue-logo {
-    height: 48px;
+    height: 60px;
     margin: 5px;
   }
 
   nav {
     display: flex;
     .material-icons {
-      font-size: 32px;
+      font-size: 36px;
       color: inherit;
       padding: inherit;
       margin: inherit;
+      user-select: none;
     }
     > * {
       cursor: pointer;
@@ -69,6 +70,7 @@ export default {
       border-radius: 20px;
       padding: 6px;
       margin: 3px;
+      transition: color .15s ease;
 
       &:hover {
         background-color: rgb(235, 235, 235);
@@ -90,11 +92,10 @@ export default {
         padding: .7em;
         display: flex;
         align-items: center;
-        justify-content: space-between;
 
         .material-icons {
-          font-size: 24px;
-          margin-left: 1em;
+          font-size: 18px;
+          margin-right: .5em;
           padding: 0;
         }
 
