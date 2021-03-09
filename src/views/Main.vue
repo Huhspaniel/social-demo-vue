@@ -8,8 +8,19 @@
       <div class="material-icons">settings</div>
     </nav>
   </div>
+  <button v-on:click="logOut()">Log Out</button>
   <router-view />
 </template>
+
+<script lang="ts">
+import { logOut } from '../services/firebase.service';
+
+export default {
+    methods: {
+        logOut
+    }
+}
+</script>
 
 <style scoped lang="scss">
 .nav {
